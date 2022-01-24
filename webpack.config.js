@@ -1,6 +1,5 @@
-const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-
+import path from "path";
+import HtmlWebpackPlugin from "html-webpack-plugin";
 
 module.exports = {
     mode: 'none',
@@ -11,12 +10,19 @@ module.exports = {
     resolve: {
         extensions: ['.ts', '.tsx', '.js']
     },
+    devServer: {
+        static: {
+            directory: path.join(__dirname, 'dist'),
+        },
+        compress: true,
+        port: 9000,
+    },
     module: {
         rules: [
             {
                 test: /\.tsx?$/,
                 use: 'ts-loader',
-                exclude: '/node_modules/'
+                exclude: /node_modules/
             }
         ],
     },
